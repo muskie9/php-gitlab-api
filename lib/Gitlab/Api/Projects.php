@@ -401,10 +401,12 @@ class Projects extends AbstractApi
     /**
      * @param $project_id
      * @param $file_path
+     * @param $ref
      * @return mixed
      */
-    public function file($project_id, $file_path)
+    public function file($project_id, $file_path, $ref)
     {
-        return $this->get($this->getProjectPath($project_id, 'repository/files/' . $this->encodePath($file_path)));
+        return $this->get($this->getProjectPath($project_id, 'repository/files/'), array('file_path' => $file_path, 'ref' => $ref));
     }
+
 }
