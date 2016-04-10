@@ -397,4 +397,14 @@ class Projects extends AbstractApi
     {
         return $this->delete($this->getProjectPath($project_id, 'services/'.$this->encodePath($service_name)));
     }
+    
+    /**
+     * @param $project_id
+     * @param $file_path
+     * @return mixed
+     */
+    public function file($project_id, $file_path)
+    {
+        return $this->get($this->getProjectPath($project_id, 'repository/files/' . $this->encodePath($file_path)));
+    }
 }
