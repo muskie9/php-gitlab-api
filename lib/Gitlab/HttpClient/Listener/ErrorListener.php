@@ -39,7 +39,10 @@ class ErrorListener implements ListenerInterface
     {
         /** @var $response \Gitlab\HttpClient\Message\Response */
         if ($response->isClientError() || $response->isServerError()) {
-            $content = $response->getContent();
+	        if($response->getStatusCode() == 404){
+		        
+	        }else{
+		        $content = $response->getContent();
             if (is_array($content) && isset($content['message'])) {
                 if (400 == $response->getStatusCode()) {
                     $message = $this->parseMessage($content['message']);
@@ -58,6 +61,7 @@ class ErrorListener implements ListenerInterface
             }
 
             throw new RuntimeException($errorMessage, $response->getStatusCode());
+	        }
         }
     }
 
